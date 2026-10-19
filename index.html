@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Prototipo ilustrativo del sistema de monitoreo, acompañamiento y retroalimentación formativa basado en modelos de diagnóstico cognitivo.">
+  <title>Monitor formativo MDC · Psicología UNAM</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2300225b'/%3E%3Cpath d='M15 45V19h9l8 13 8-13h9v26h-8V31l-9 14-9-14v14z' fill='%23d5a900'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="demo-strip">PROTOTIPO ILUSTRATIVO · DATOS SIMULADOS · USO ACADÉMICO</div>
+  <header class="institutional-header">
+    <div class="brand-lockup">
+      <img src="assets/unam_font_clasica.png" alt="Universidad Nacional Autónoma de México" class="logo logo-unam">
+      <span class="brand-rule" aria-hidden="true"></span>
+      <img src="assets/facultad-de-psicologia.png" alt="Facultad de Psicología" class="logo logo-facultad">
+      <div class="brand-copy">
+        <p>Facultad de Psicología · UNAM</p>
+        <h1>Monitor formativo de competencias</h1>
+      </div>
+    </div>
+    <div class="lab-lockup">
+      <div class="author">
+        <span>Autor</span>
+        <strong>Dr. Ramsés Vázquez Lira</strong>
+      </div>
+      <img src="assets/CP_lab_logo_negro.png" alt="Computational Psychometrics Lab" class="logo logo-lab">
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navegación principal">
+      <div class="project-mark">
+        <span class="project-monogram">MDC</span>
+        <div><strong>Sistema de acompañamiento</strong><small>T0 · T1</small></div>
+      </div>
+      <nav class="nav-list">
+        <button class="nav-button active" data-view="student" aria-current="page">
+          <span class="nav-icon">01</span><span>Mi perfil</span>
+        </button>
+        <button class="nav-button" data-view="institution">
+          <span class="nav-icon">02</span><span>Vista institucional</span>
+        </button>
+        <button class="nav-button" data-view="interpretation">
+          <span class="nav-icon">03</span><span>Cómo interpretar</span>
+        </button>
+        <button class="nav-button" data-view="about">
+          <span class="nav-icon">04</span><span>Acerca del sistema</span>
+        </button>
+      </nav>
+      <div class="sidebar-note">
+        <span class="shield" aria-hidden="true">◇</span>
+        <p><strong>Evaluación de bajas consecuencias</strong>Los resultados orientan el aprendizaje; no determinan admisión, permanencia o acreditación.</p>
+      </div>
+    </aside>
+
+    <main id="main-content">
+      <section class="view active" id="student-view" aria-labelledby="student-title">
+        <div class="view-heading">
+          <div>
+            <p class="eyebrow">Scorecard individual</p>
+            <h2 id="student-title">Tu perfil de competencias</h2>
+            <p>Una lectura formativa de tus fortalezas, áreas de oportunidad y siguientes pasos.</p>
+          </div>
+          <div class="time-toggle" role="group" aria-label="Momento de evaluación">
+            <button data-time="t0">T0 · Ingreso</button>
+            <button class="active" data-time="t1">T1 · 4.º semestre</button>
+          </div>
+        </div>
+
+        <div class="student-banner">
+          <div class="avatar" aria-hidden="true">AG</div>
+          <div>
+            <span>Reporte formativo de ejemplo</span>
+            <h3>Ana García</h3>
+            <p>Cohorte 2026 · Aplicación completa · Evidencia suficiente en 6 de 6 competencias</p>
+          </div>
+          <div class="status-badge"><span></span> Perfil actualizado</div>
+        </div>
+
+        <div class="summary-grid">
+          <article class="summary-card primary">
+            <span class="metric-label">Fortalezas observadas</span>
+            <strong id="strength-count">3</strong>
+            <small>competencias con evidencia consistente</small>
+          </article>
+          <article class="summary-card">
+            <span class="metric-label">En consolidación</span>
+            <strong id="growth-count">2</strong>
+            <small>prioridades para tu siguiente etapa</small>
+          </article>
+          <article class="summary-card">
+            <span class="metric-label">Mayor avance T0–T1</span>
+            <strong id="largest-change">+24</strong>
+            <small>puntos en razonamiento científico</small>
+          </article>
+          <article class="summary-card subtle">
+            <span class="metric-label">Próxima revisión</span>
+            <strong>5.º</strong>
+            <small>semestre · seguimiento formativo</small>
+          </article>
+        </div>
+
+        <div class="content-grid">
+          <article class="panel profile-panel">
+            <div class="panel-header">
+              <div><p class="eyebrow">Perfil diagnóstico</p><h3>Probabilidad de dominio por competencia</h3></div>
+              <button class="text-button" id="toggle-comparison" aria-pressed="true">Ocultar T0</button>
+            </div>
+            <p class="panel-help">Las barras expresan el grado de evidencia disponible; no representan una calificación.</p>
+            <div id="competency-list" class="competency-list"></div>
+            <div class="legend" aria-label="Leyenda">
+              <span><i class="legend-dot t1"></i> Momento seleccionado</span>
+              <span><i class="legend-line"></i> Línea basal T0</span>
+              <span><i class="legend-band"></i> Margen de incertidumbre</span>
+            </div>
+          </article>
+
+          <div class="right-column">
+            <article class="panel insight-panel">
+              <p class="eyebrow">Lectura integrada</p>
+              <h3>Lo que muestra tu perfil</h3>
+              <p id="integrated-reading">Tu perfil presenta evidencia consistente en comprensión científica, evaluación de evidencia y juicio ético. El razonamiento cuantitativo continúa en consolidación, especialmente cuando las tareas requieren integrar variabilidad e incertidumbre.</p>
+              <button class="outline-button" data-open-detail>Ver explicación completa</button>
+            </article>
+            <article class="panel action-panel">
+              <div class="panel-header compact"><div><p class="eyebrow">Plan de acompañamiento</p><h3>Tres siguientes pasos</h3></div><span class="week-label">8 semanas</span></div>
+              <ol class="action-list">
+                <li><span>1</span><div><strong>Interpretar evidencia cuantitativa</strong><p>Practica con tablas y gráficas que incluyan variabilidad e incertidumbre.</p></div></li>
+                <li><span>2</span><div><strong>Justificar decisiones metodológicas</strong><p>Explicita cómo la evidencia respalda o limita cada conclusión.</p></div></li>
+                <li><span>3</span><div><strong>Revisar tu progreso</strong><p>Comenta estas metas con tu tutor y registra dos evidencias de avance.</p></div></li>
+              </ol>
+              <button class="primary-button" id="download-demo">Descargar plan ilustrativo</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="institution-view" aria-labelledby="institution-title">
+        <div class="view-heading">
+          <div>
+            <p class="eyebrow">Monitoreo institucional</p>
+            <h2 id="institution-title">Desarrollo de competencias por cohorte</h2>
+            <p>Evidencia agregada para acompañamiento, formación docente y mejora curricular.</p>
+          </div>
+          <div class="privacy-label">Datos agregados · n ≥ 20</div>
+        </div>
+
+        <div class="filter-bar" aria-label="Filtros simulados">
+          <label>Cohorte<select id="cohort-filter"><option>2026</option><option>2025</option><option>2024</option></select></label>
+          <label>Momento<select id="institution-time"><option value="compare">Comparar T0–T1</option><option value="t0">T0 · Ingreso</option><option value="t1">T1 · 4.º semestre</option></select></label>
+          <label>Turno<select><option>Todos los turnos</option><option>Matutino</option><option>Vespertino</option></select></label>
+          <button class="outline-button" id="reset-filters">Restablecer</button>
+        </div>
+
+        <div class="summary-grid institution-summary">
+          <article class="summary-card primary"><span class="metric-label">Estudiantes evaluados</span><strong>842</strong><small>91% de cobertura de la cohorte</small></article>
+          <article class="summary-card"><span class="metric-label">Perfiles interpretables</span><strong>88%</strong><small>evidencia suficiente para retroalimentar</small></article>
+          <article class="summary-card"><span class="metric-label">Mayor avance promedio</span><strong>+18</strong><small>puntos en razonamiento científico</small></article>
+          <article class="summary-card warning"><span class="metric-label">Prioridad compartida</span><strong>A3</strong><small>razonamiento cuantitativo y analítico</small></article>
+        </div>
+
+        <div class="institution-grid">
+          <article class="panel heatmap-panel">
+            <div class="panel-header"><div><p class="eyebrow">Panorama de cohorte</p><h3>Probabilidad promedio de dominio</h3></div><span class="sample-chip">n = 842</span></div>
+            <p class="panel-help">Seleccione una fila para consultar su interpretación institucional.</p>
+            <div class="heatmap-head"><span>Competencia</span><span>T0</span><span>T1</span><span>Cambio</span></div>
+            <div id="heatmap" class="heatmap"></div>
+          </article>
+
+          <article class="panel priority-panel">
+            <p class="eyebrow">Hallazgo prioritario</p>
+            <h3 id="priority-title">A3 · Razonamiento cuantitativo</h3>
+            <div class="priority-score"><strong id="priority-value">46%</strong><span>probabilidad promedio en T1</span></div>
+            <p id="priority-copy">La cohorte avanza respecto de T0, pero mantiene dificultades compartidas al interpretar variabilidad, asociación e incertidumbre.</p>
+            <div class="recommendation-box">
+              <span>Implicación formativa</span>
+              <p id="priority-action">Integrar actividades breves de lectura de evidencia cuantitativa en asignaturas del Área de Formación General y acompañarlas con retroalimentación común.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="institution-grid lower">
+          <article class="panel transition-panel">
+            <div class="panel-header"><div><p class="eyebrow">Seguimiento longitudinal</p><h3>Transiciones entre T0 y T1</h3></div><span class="sample-chip">Perfiles vinculados: 716</span></div>
+            <div class="transition-chart" role="img" aria-label="Distribución simulada de transiciones de dominio">
+              <div class="transition-row"><span>Se consolida</span><div><i style="width:38%"></i></div><strong>38%</strong></div>
+              <div class="transition-row"><span>Permanece alto</span><div><i style="width:31%"></i></div><strong>31%</strong></div>
+              <div class="transition-row"><span>Permanece en proceso</span><div><i style="width:22%"></i></div><strong>22%</strong></div>
+              <div class="transition-row"><span>Requiere revisión</span><div><i style="width:9%"></i></div><strong>9%</strong></div>
+            </div>
+            <p class="fine-print">Las transiciones describen cambios en la evidencia observada; no atribuyen causalidad al currículo.</p>
+          </article>
+          <article class="panel decisions-panel">
+            <p class="eyebrow">De la evidencia a la acción</p>
+            <h3>Decisiones que puede apoyar</h3>
+            <div class="decision-grid">
+              <div><span>01</span><strong>Tutoría</strong><p>Focalizar apoyos y dar seguimiento a metas formativas.</p></div>
+              <div><span>02</span><strong>Docencia</strong><p>Reconocer demandas compartidas entre asignaturas.</p></div>
+              <div><span>03</span><strong>Formación continua</strong><p>Priorizar recursos para el profesorado.</p></div>
+              <div><span>04</span><strong>Currículo</strong><p>Examinar oportunidades de aprendizaje y su progresión.</p></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="interpretation-view" aria-labelledby="interpretation-title">
+        <div class="view-heading"><div><p class="eyebrow">Guía de lectura</p><h2 id="interpretation-title">Cómo interpretar un perfil diagnóstico</h2><p>Cinco principios para convertir la estimación en información formativa responsable.</p></div></div>
+        <div class="principles-grid">
+          <article><span>01</span><h3>Evidencia, no etiqueta</h3><p>La probabilidad de dominio resume la evidencia disponible ante una familia de tareas. No describe una capacidad fija, completa ni independiente del contexto.</p></article>
+          <article><span>02</span><h3>Perfil, no promedio</h3><p>Dos estudiantes con la misma puntuación global pueden mostrar combinaciones diferentes de fortalezas y necesidades.</p></article>
+          <article><span>03</span><h3>Incertidumbre visible</h3><p>Las decisiones formativas deben considerar la precisión de la clasificación y solicitar nueva evidencia cuando el resultado no sea concluyente.</p></article>
+          <article><span>04</span><h3>Cambio con cautela</h3><p>La comparación T0–T1 permite describir transiciones, pero no demuestra por sí sola que el currículo haya causado el cambio.</p></article>
+          <article><span>05</span><h3>Acción proporcional</h3><p>Los resultados orientan metas, apoyos y oportunidades de aprendizaje. No se utilizarán aisladamente para decisiones de altas consecuencias.</p></article>
+          <article class="principle-highlight"><span>Uso previsto</span><h3>Acompañar para aprender</h3><p>El valor del sistema no termina en clasificar: comienza cuando el perfil se traduce en una conversación, una meta y una oportunidad concreta de mejora.</p></article>
+        </div>
+      </section>
+
+      <section class="view" id="about-view" aria-labelledby="about-title">
+        <div class="view-heading"><div><p class="eyebrow">Arquitectura conceptual</p><h2 id="about-title">Del patrón de respuestas a la acción formativa</h2><p>El prototipo representa el producto esperado del programa de investigación.</p></div></div>
+        <div class="process-flow" aria-label="Flujo conceptual del sistema">
+          <div><span>1</span><strong>Tareas evaluativas</strong><p>Evidencia alineada con la matriz Q.</p></div><i>›</i>
+          <div><span>2</span><strong>Modelo diagnóstico</strong><p>Estimación probabilística del perfil.</p></div><i>›</i>
+          <div><span>3</span><strong>Scorecard</strong><p>Interpretación comprensible y diferenciada.</p></div><i>›</i>
+          <div><span>4</span><strong>Acompañamiento</strong><p>Metas, recursos y seguimiento T0–T1.</p></div>
+        </div>
+        <div class="about-grid">
+          <article class="panel"><p class="eyebrow">Nivel individual</p><h3>Información para autogestionar el aprendizaje</h3><p>El estudiante reconoce recursos consolidados, define prioridades y dialoga con sus docentes o tutores a partir de evidencia interpretable.</p></article>
+          <article class="panel"><p class="eyebrow">Nivel institucional</p><h3>Evidencia para acompañar y mejorar</h3><p>La Facultad identifica necesidades compartidas y orienta tutoría, formación continua y revisión curricular sin convertir los resultados en rankings.</p></article>
+        </div>
+        <div class="authorship-card">
+          <img src="assets/CP_lab_logo_negro.png" alt="Computational Psychometrics Lab">
+          <div><span>Concepto y autoría</span><strong>Dr. Ramsés Vázquez Lira</strong><p>Computational Psychometrics Lab · Facultad de Psicología · Universidad Nacional Autónoma de México</p></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="detail-dialog">
+    <button class="dialog-close" aria-label="Cerrar">×</button>
+    <p class="eyebrow">Lectura integrada del perfil</p>
+    <h2>¿Qué significa este resultado?</h2>
+    <p>El patrón simulado de Ana sugiere que puede comprender e integrar información científica, valorar evidencia y reconocer implicaciones éticas con consistencia. En cambio, requiere más oportunidades para interpretar información cuantitativa y articularla con decisiones metodológicas.</p>
+    <p>Esta lectura no es una etiqueta. El resultado depende de las tareas aplicadas, la precisión de la estimación y el momento curricular. Debe complementarse con productos académicos, observación docente y diálogo tutorial.</p>
+    <div class="dialog-callout"><strong>Siguiente conversación sugerida</strong><span>¿Qué evidencias de tus cursos muestran ya un avance en estas dos competencias?</span></div>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite">Plan ilustrativo preparado. En la versión operativa se generaría un PDF personalizado.</div>
+  <script src="app.js"></script>
+</body>
+</html>
